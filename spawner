@@ -1,0 +1,97 @@
+var spawner = {
+        run: function(moneyAvai) {
+            moneyAvai = moneyAvai *0.75;
+            
+              /* Zählt harvester */
+                var harvesters1 = _.filter(Game.creeps, (creep) => creep.memory.role == 'harvester' && creep.memory.source==0);
+                var harvesters2 = _.filter(Game.creeps, (creep) => creep.memory.role == 'harvester'&& creep.memory.source==1);
+                 /* Zählt upgrader*/
+                var upgrader = _.filter(Game.creeps, (creep) => creep.memory.role == 'upgrader');
+                
+                var repairer = _.filter(Game.creeps, (creep) => creep.memory.role == 'repairer');
+                
+                 /* Zählt builder*/
+                var builderen = _.filter(Game.creeps, (creep) => creep.memory.role == 'builder' && creep.memory.type == 'energy');
+                
+                /* Zählt builder*/
+                var builderro = _.filter(Game.creeps, (creep) => creep.memory.role == 'builder' && creep.memory.type == 'roads');
+                
+                console.log("Harvester: " + (harvesters1.length+harvesters2.length));
+                console.log("Upgrader: " + (upgrader.length));
+                console.log("Builder: " + (builderen.length+builderro.length));
+                
+                 /* Fals anzahl harvester unter 2 wird ein neuer erschafen */
+                if(harvesters1.length < 6) {
+                    if(moneyAvai>=500){
+                        var newName = Game.spawns.Spawn1.createCreep([WORK,WORK,WORK, CARRY,CARRY, MOVE,MOVE], undefined, {role: 'harvester',source:0});
+                    }else if(moneyAvai>=400){
+                        
+                        var newName = Game.spawns.Spawn1.createCreep([WORK,WORK,WORK,CARRY, MOVE], undefined, {role: 'harvester',source:0});
+                    }else if(moneyAvai>=350){
+                        var newName = Game.spawns.Spawn1.createCreep([WORK,WORK, CARRY,CARRY, MOVE], undefined, {role: 'harvester',source:0});
+                    }else if(moneyAvai>=300){
+                        var newName = Game.spawns.Spawn1.createCreep([WORK,WORK, CARRY, MOVE], undefined, {role: 'harvester',source:0});
+                    }else if(moneyAvai>=250){
+                        var newName = Game.spawns.Spawn1.createCreep([WORK,CARRY, CARRY, MOVE], undefined, {role: 'harvester',source:0});
+                    }else{
+                        var newName = Game.spawns.Spawn1.createCreep([WORK, CARRY, MOVE], undefined, {role: 'harvester',source:0});
+                    }
+                }else
+    
+                /* Fals anzahl upgrader unter 2 ist, wird ein neuer erstelle*/
+                if(upgrader.length < 2){
+
+                    if(moneyAvai>=400){
+                        var newName = Game.spawns.Spawn1.createCreep([WORK,WORK,CARRY,CARRY,MOVE, MOVE], undefined, {role: 'upgrader'});
+                    }else if(moneyAvai>=300){
+                        var newName = Game.spawns.Spawn1.createCreep([WORK,CARRY,CARRY,MOVE, MOVE], undefined, {role: 'upgrader'});
+                    }else if(moneyAvai>=250){
+                        var newName = Game.spawns.Spawn1.createCreep([WORK,CARRY, MOVE,MOVE], undefined, {role: 'upgrader'});
+                    }else{
+                        var newName = Game.spawns.Spawn1.createCreep([WORK,CARRY, MOVE], undefined, {role: 'upgrader'});
+                    }
+                }else
+    
+                /* Fals anzahl builder unter 2 ist, wird ein neuer erstellt */
+                if(builderen.length < 2){
+                  var newName = Game.spawns.Spawn1.createCreep([WORK,CARRY, MOVE], undefined, {role: 'builder',type: 'energy'});
+                }else
+    
+                /* Fals anzahl builder unter 2 ist, wird ein neuer erstellt */
+                if(builderro.length < 2){
+                  var newName = Game.spawns.Spawn1.createCreep([WORK,CARRY, MOVE], undefined, {role: 'builder',type: 'roads'});
+                }else
+                if(harvesters2.length < 10) {
+                    if(moneyAvai>=500){
+                        var newName = Game.spawns.Spawn1.createCreep([WORK,WORK,WORK, CARRY,CARRY, MOVE,MOVE], undefined, {role: 'harvester',source:1});
+                    }else if(moneyAvai>=400){
+                        
+                        var newName = Game.spawns.Spawn1.createCreep([WORK,WORK,WORK,CARRY, MOVE], undefined, {role: 'harvester',source:1});
+                    }else if(moneyAvai>=350){
+                        var newName = Game.spawns.Spawn1.createCreep([WORK,WORK, CARRY,CARRY, MOVE], undefined, {role: 'harvester',source:1});
+                    }else if(moneyAvai>=300){
+                        var newName = Game.spawns.Spawn1.createCreep([WORK,WORK, CARRY, MOVE], undefined, {role: 'harvester',source:1});
+                    }else if(moneyAvai>=250){
+                        var newName = Game.spawns.Spawn1.createCreep([WORK,CARRY, CARRY, MOVE], undefined, {role: 'harvester',source:1});
+                    }else{
+                        var newName = Game.spawns.Spawn1.createCreep([WORK, CARRY, MOVE], undefined, {role: 'harvester',source:1});
+                    }
+                }else if(repairer.length < 1){
+
+                    if(moneyAvai>=400){
+                        var newName = Game.spawns.Spawn1.createCreep([WORK,WORK,CARRY,CARRY,MOVE, MOVE], undefined, {role: 'repairer'});
+                    }else if(moneyAvai>=300){
+                        var newName = Game.spawns.Spawn1.createCreep([WORK,CARRY,CARRY,MOVE, MOVE], undefined, {role: 'repairer'});
+                    }else if(moneyAvai>=250){
+                        var newName = Game.spawns.Spawn1.createCreep([WORK,CARRY, MOVE,MOVE], undefined, {role: 'repairer'});
+                    }else{
+                        var newName = Game.spawns.Spawn1.createCreep([WORK,CARRY, MOVE], undefined, {role: 'repairer'});
+                    }
+                }
+                
+                
+                
+        }
+}; 
+
+module.exports = spawner;
